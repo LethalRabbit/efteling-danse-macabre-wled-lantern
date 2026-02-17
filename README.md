@@ -10,7 +10,7 @@ The original lantern already looks amazing, but the stock orange LEDs could be i
 
 [Click here to watch the demo on YouTube](https://youtube.com/shorts/hM2XBhFmyak?feature=share)
 
-![Result](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/d6b8cb45dc4eade148d3c2785d11ecf73ecba6bf/images/Result.jpg)
+![Result](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/3d96e8483f9c84a1f05695dc08b1ec9f38605566/images/Result2.jpg)
 
 ---
 
