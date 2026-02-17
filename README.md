@@ -429,6 +429,155 @@ Now we tell WLED which GPIO pin is used for the button.
    - `Button type` → `Pushbutton`.
 7. Click `Save`.
 
-Your button should now toggle the lantern on and off on a short press. We will add additional button functionality later.
+Your button should now toggle the lantern on and off on a short press. Test everything extensively to make sure all is working properly, before we assemble and glue everything together. We will add additional button functionality later.
+
+![Pre-Glue setup](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/95db3bf9530a6f62fbdbd40fe81bc9db6e5958bd/images/Test%20Setup.jpg)
+
+## 9️⃣ Final Assembly
+
+Now we will assemble everything inside the lantern. This step can feel a little tight and slightly messy - that's normal.
+
+### Step 1 - Insert the Electronics into the PVC Tube
+
+1. Plug your USB-C to USB-C cable into the ESP32.
+2. Guide the cable through the central opening in the PVC tube.
+3. Carefully place:
+  - The ESP32 board
+  - The capacitor and resistor
+  - All wiring
+    inside the bottom of the PVC tube. Try to position everything as compact and low as possible so it fits comfortably inside the bottom half of the tube.
+4. Make sure the USB-C cable exits cleanly without putting tension on the board, and there is no tension on any of the other parts.
+
+### Step 2 - Power On During Assembly (Important)
+
+Before glueing everything together, connect the powerbank to the USB-C cable and turn the LEDs on. This way, if during assembly they suddenly turn off, flicker, or behave strangely, you can stop immediately before you break anything permanently. If this happens, analyse the problem and try again.
+
+### Step 3 - Glue the PVC Tube in Place
+
+Once everything snugly fits inside the PVC tube, we will hot glue the tube into the lantern. I would suggest marking the exact position of the tube on the bottom inside the lantern, then applying a generous amount of hot glue directly on the lantern base and pressing the tube into place. This is less messy than applying the glue to the buttom of the tube itself, probably spilling it everywhere.
+
+⚠️ Do not force anything! It may be a tight fit, but everything should fit together without too much force.
+
+You should end up with a result that looks like this:
+
+![Glue](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/95db3bf9530a6f62fbdbd40fe81bc9db6e5958bd/images/Glue.jpg)
+
+![Powerbank](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/95db3bf9530a6f62fbdbd40fe81bc9db6e5958bd/images/Powerbank.jpg)
+
+### Step 5 - Install the Frosted Inner Lantern
+
+Once the PVC tube is securely glued, slide the frosted inner lantern piece over the LED-wrapped tube. Make sure it sits evenly and check that nothing is rubbing against or blocking the LEDs. Also make sure no light leaks through anywhere. Test if the lantern closes without issues.
+
+---
+
+## 🔟 Final WLED Configuration (2D Matrix, Presets & Button Macro)
+
+Now that the lantern is physically assembled, we will configure WLED properly with the finishing touches.
+
+### Step 1 - Configure the 2D Matrix
+
+We first tell WLED how our LEDs are arranged. Since we want to project an animation, we have to set up the LEDs as a '2D Matrix'. 
+
+1. Connect your phone or laptop to the lantern’s WiFi network.
+2. Open the WLED interface in your browser.
+3. Click `TO THE CONTROLS!`
+4. Go to `Settings` → `2D Configuration`
+5. Set `Strip or panel` → `2D Matrix`
+6. Scroll down to **LED panel layout** and configure:
+   - `1st LED` → `Bottom Right`
+   - `Orientation` → `Horizontal`
+7. Define the size of our matrix
+   - `Height (H)` = the number of vertical rows of LEDs. Count how many full spiral rows you wrapped. In my case: `21`
+   - `Width (W)` = this is trickier because our matrix is circular. You must choose a number so that `W × H` is slightly **above** your total LED count. In my case: `9`. See example below for extra info.
+8. Click `Save`.
 
 
+Example for Step 7:
+- I have `180` LEDs total.
+- My height is `21`.
+  
+So:
+9 × 21 = 189
+
+That is just above 180, so I set:
+- `Width (W)` → `9`
+- `Height (H)` → `21`
+
+### Step 2 - Create Flame Presets
+
+Now we create the actual flame effects.
+
+1. Click `TO THE CONTROLS!`
+2. Click the 🙂 (smiley icon) at the bottom. This opens the effect browser.
+
+Recommended effects to start with:
+
+- `Fire 2012`
+- `Candle`
+
+Adjust:
+- Speed
+- Intensity
+- Color palette
+
+Take your time and tune the look until you are happy.
+
+#### Save a Preset
+
+Once you have an effect you like:
+
+1. Click the ❤️ (heart icon).
+2. Click `+ Preset`.
+3. Give it a recognizable name.
+4. Choose a `Save to ID` number.
+
+Start at:
+
+- Preset `1` for your first preset.
+- Preset `2` for the next.
+- Preset `3` for the next.
+- And so on.
+
+If you want the lantern to boot into this preset automatically:
+
+- Enable `Apply at boot`.
+
+Click `Save`.
+
+Repeat this process for all the presets you want.
+
+### Step 3 - Create a Cycle Preset
+
+Now we create a special preset that cycles through all your presets.
+
+1. Click `+ Preset`
+2. Name it: `Cycle`
+3. Disable `Use current state`
+4. Under `API command`, enter `P1=1&P2=2&PL=~`
+5. Set `Save to ID` → `50`
+6. Click `Save`
+
+You now have a preset (ID 50) that cycles between preset 1 and 2.
+
+### ⚠️ Important: Adjust P2 When You Add More Presets
+
+`P2` is your 'end value' and must always equal your **last preset number**. If you create 10 presets in total, your API command must become `P1=1&P2=10&PL=~`. If you forget to update the `P2` value, your cycle will stop too early and new presets won't be included.
+
+### Step 4 - Assign Cycle to Long Button Press
+
+Now we connect the cycle preset to the physical button.
+
+1. Go to `Settings` → `Time & Macros`.
+2. Scroll down to `Button actions`.
+3. Under `Button 0`, find the `long` field.
+4. Change the value from `0` to `50` (our 'Cycle' preset ID).
+5. Click `Save`.
+
+Now:
+
+- A short press toggles the lantern.
+- A long press cycles through your presets.
+
+---
+
+Your Danse Macabre WLED lantern is now fully configured and can be used in all its majestic glory! If you recreate this project, don't forget to show me the result. And if you have any questions, feel free to contact me through Github or reddit.
