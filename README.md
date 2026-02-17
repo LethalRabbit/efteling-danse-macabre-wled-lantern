@@ -269,6 +269,7 @@ You now have: (LED GND + capacitor negative) → extra black wire → free end
 After completing the previous step, you should now have ended up (again) with a red, black and white wire.
 
 Now, we will connect the wires to the board. 
+
 ⚠️ A couple of notes:
 - Before soldering each wire, make sure to add some shrink tube to the wire first.
 - Add some flux and solder to the ends of the wires, as well as to the following ESP32 pins:
@@ -287,25 +288,30 @@ Solder each one carefully. After soldering, slide the shrink tube over it and sh
 
 ---
 
-### Final Check Before Powering
+## 4️⃣ Testing out the Connections
 
-Before plugging in USB power:
+Now, it's time to test our setup and see if everything is working!
+
+⚠️ Before plugging in USB power:
 
 - Verify red goes to VIN.
 - Verify black goes to GND.
+- Verify white goes to D25.
 - Verify capacitor polarity is correct.
-- Verify white wire goes through the resistor to the GPIO.
-- Make sure there are no loose strands of wire.
+- Make sure there are no loose strands of wire, or bare pieces of metal touching each other.
 
-Now:
+### Powering On
 
-1. Plug the ESP32 into USB power.
+1. Connect the ESP32 board to your powerbank via the USB-C port.
 2. Open the WLED interface.
-3. Turn the LEDs on.
+3. Click **'TO THE CONTROLS!'**.
+4. Go to **'Settings' → 'LED Preferences'**.
+5. Select **'Enable automatic brightness limiter'** and set **'Maximum PSU Current'** to _1000 mA_.
+6. Leave **'WS281x'** and **'(typ. 5V WS281x)'**, as this is the LED strip type we're using.
+7. Set **'Color Order'** to _GRB_.
+8. Set **'Length:'** to the amount of LEDs you are using. In my case, that's _180_ LEDs.
+9. Set **'Data GPIO'** to _25_.
+10. Hit **'Save'**.
 
-If everything is wired correctly, the LED strip should light up.
-
-If nothing happens, first check:
-- Did you connect to DIN and not DOUT?
-Then create a preset with the following API command:
+If everything is wired correctly, the LED strip should light up. If nothing happens, try toggling the system with the 'Power' button in the controls. If that does not work, go back and check every step before this one for mistakes.
 
