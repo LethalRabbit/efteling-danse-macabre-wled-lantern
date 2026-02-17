@@ -273,9 +273,9 @@ Now, we will connect the wires to the board.
 ⚠️ A couple of notes:
 - Before soldering each wire, make sure to add some shrink tube to the wire first.
 - Add some flux and solder to the ends of the wires, as well as to the following ESP32 pins:
-  - VIN
-  - GND
-  - D25
+  - `VIN`
+  - `GND`
+  - `D25`
 
 We will solder the wires to the following pins:
 - 🔴 Red wire → ESP32 VIN
@@ -288,15 +288,15 @@ Solder each one carefully. After soldering, slide the shrink tube over it and sh
 
 ---
 
-## 4️⃣ Testing out the Connections
+## 5️⃣ Testing out the Connections
 
 Now, it's time to test our setup and see if everything is working!
 
 ⚠️ Before plugging in USB power:
 
-- Verify red goes to VIN.
-- Verify black goes to GND.
-- Verify white goes to D25.
+- Verify red goes to `VIN`.
+- Verify black goes to `GND`.
+- Verify white goes to `D25`.
 - Verify capacitor polarity is correct.
 - Make sure there are no loose strands of wire, or bare pieces of metal touching each other.
 
@@ -305,24 +305,24 @@ Now, it's time to test our setup and see if everything is working!
 1. Connect the ESP32 board to your powerbank via the USB-C port.
 2. Connect to the lantern's WiFi network.
 3. Open the WLED interface.
-4. Click **'TO THE CONTROLS!'**.
-5. Go to **'Settings' → 'LED Preferences'**.
-6. Select **'Enable automatic brightness limiter'** and set **'Maximum PSU Current'** to _1000 mA_.
-7. Leave **'WS281x'** and **'(typ. 5V WS281x)'**, as this is the LED strip type we're using.
-8. Set **'Color Order'** to _GRB_.
-9. Set **'Length:'** to the amount of LEDs you are using. In my case, that's _180_ LEDs.
-10. Set **'Data GPIO'** to _25_.
-11. Hit **'Save'**.
+4. Click `TO THE CONTROLS!`.
+5. Go to `Settings` → `LED Preferences`.
+6. Select `Enable automatic brightness limiter` and set `Maximum PSU Current` to `1000 mA`.
+7. Leave `WS281x` and `(typ. 5V WS281x)`, as this is the LED strip type we're using.
+8. Set `Color Order` to `GRB`.
+9. Set `Length:` to the amount of LEDs you are using. In my case, that's `180` LEDs.
+10. Set `Data GPIO` to `25`.
+11. Hit `Save`.
 
-If everything is wired correctly, the LED strip should light up. If nothing happens, try toggling the system with the 'Power' button in the controls. If that does not work, go back and check if you made any mistakes in the previous steps.
+If everything is wired correctly, the LED strip should light up. If nothing happens, try toggling the system with the `Power` button in the controls. If that does not work, go back and check if you made any mistakes in the previous steps.
 
-Now, make sure to test if controls such as On/Off and the brightness control slider are working. Also change the color of the lights to see if GRB is the correct color order for your strip. E.g. if you set the color to red in the interface, but the lights turn green, you should pick a different color order in the LED Settings.
+Now, make sure to test if controls such as On/Off and the brightness control slider are working. Also change the color of the lights to see if `GRB` is the correct color order for your strip. E.g. if you set the color to red in the interface, but the lights turn green, you should pick a different color order in the LED Settings.
 
 Congratulations, your LED strip is wired correctly and can be controlled via the web app! 🎉
 
 ---
 
-## 5️⃣ Modifying the Lantern (Physical Changes)
+## 6️⃣ Modifying the Lantern (Physical Changes)
 
 In this step, we will make a few small physical modifications to the original popcorn lantern. Again, take your time here. Measure twice, cut once.
 
@@ -375,7 +375,7 @@ Once these steps are completed, we will continue with adding the push button.
 
 ---
 
-## 6️⃣ Mounting and Connecting the Push Button
+## 7️⃣ Mounting and Connecting the Push Button
 
 In this step, we permanently mount the push button into the lantern and connect it to the ESP32.
 
@@ -405,15 +405,15 @@ The button should now be mechanically fixed in the base of the lantern.
 We will now connect the button to the ESP32 board. Before soldering, slide small pieces of heat shrink tubing onto both wires. Also make sure to add flux and tin the following connections:
 - End of the red wire
 - End of the black wire
-- GPIO D21 pin
-- GND pin
+- `GPIO D21` pin
+- `GND` pin
 
-**⚠️ There should be a second, unused GND pin remaining on the board that you can use for the button!**
+**⚠️ There should be a second, unused `GND` pin remaining on the board that you can use for the button!**
 
 Then, solder everything together:
 
-1. Solder the black wire to the free **GND** pin. 
-2. Solder the red wire to **GPIO D21**.
+1. Solder the black wire to the free `GND` pin. 
+2. Solder the red wire to `GPIO D21`.
 3. Slide the heat shrink tubing over the exposed solder joints.
 4. Carefully shrink the tubing.
 
@@ -423,24 +423,20 @@ The end result should look like this:
 
 ![Button Wiring](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/ef19b759e4852d0ca4d1264d391c6ed4fccecd36/images/Button%20Wiring.jpg)
 
-## 7️⃣ Configuring the Button in WLED
+## 8️⃣ Configuring the Button in WLED
 
 Now we tell WLED which GPIO pin is used for the button.
 
 1. Connect the ESP32 board to your powerbank via the USB-C port.
 2. Connect your phone or laptop to the lantern’s WiFi network.
 3. Open the WLED interface in your browser.
-4. Click **“TO THE CONTROLS!”**
-5. Go to **Settings → LED Preferences**
+4. Click `TO THE CONTROLS!`.
+5. Go to `Settings` → `LED Preferences`.
 6. Set:
-   - **Button 0 GPIO** → `21`
-   - **Button type** → `Pushbutton`
-7. Click **Save**
+   - `Button 0 GPIO` → `21`.
+   - `Button type` → `Pushbutton`.
+7. Click `Save`.
 
-Your button should now toggle the lantern on and off.
-
-You can optionally configure preset cycling in:
-
-Settings → Time & Macros → Button Actions
+Your button should now toggle the lantern on and off on a short press. We will add additional button functionality later.
 
 
