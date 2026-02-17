@@ -24,7 +24,7 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 - A discreet physical button allows toggling the lantern on or off and cycling through effects
 - The original AAA battery compartment is replaced with a regular powerbank
 - From the outside, the lantern still looks completely original - the magic happens within
-- 
+  
 ---
 
 ## 🔧 Hardware and Tools Used
@@ -32,7 +32,7 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 ### Hardware
 
 - 1x ESP32 DevKit V1 (USB-C)
-- ~ 3 meters of WS2812B addressable LED strip (60 LEDs/m, ±180 LEDs total)
+- ~ 3 meters of 5V WS2812B addressable LED strip (60 LEDs/m, ±180 LEDs total)
 - 330Ω resistor (data line protection)
 - 470µF capacitor or higher (power stabilization between 5V and GND)
 - 1x momentary push button
@@ -54,30 +54,181 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 
 ---
 
-## ⚡ Wiring Overview
+# 🛠 Build Guide
 
-Basic wiring:
+This section explains how to create the lantern step by step.
 
-ESP32 VIN → LED 5V  
-ESP32 GND → LED GND  
-ESP32 GPIO → 330Ω resistor → LED DIN  
-1000µF capacitor between 5V and GND  
-Push button between GPIO and GND  
-
-Make sure:
-- The LED strip is connected to **DIN**, not DOUT
-- Common ground is shared
-- Capacitor polarity is correct
+No advanced coding is required. We will use existing firmware (WLED) and configure it.
 
 ---
 
-## 🧠 WLED Configuration
+## 1️⃣ Install WLED on the ESP32
 
-- LED type: WS2812B
-- Color order: GRB
-- Matrix layout configured for cylindrical spiral
+Before wiring anything, we first install WLED on the ESP32 board.
+
+WLED is open-source firmware for controlling addressable LEDs:  
+https://github.com/wled/WLED
+
+The easiest way to install it is via the official web installer:  
+https://install.wled.me/
+
+---
+
+### Step-by-step installation
+
+1. Plug your ESP32 board into your computer using a USB-C cable.
+2. Open **Google Chrome or Microsoft Edge** (recommended for best compatibility).
+3. Go to:  
+   👉 https://install.wled.me/
+4. Click **Install**
+5. Select your ESP32 device from the list that appears.
+6. Confirm the installation.
+7. Wait until the process finishes.
+
+When the installation completes, you may see an option to continue with WiFi configuration (connecting to your home network, etc.).
+
+For this project, we will **not** connect the ESP32 to your home WiFi.  
+Instead, we will let it create its own WiFi network. This allows you to adjust the lantern settings anywhere - even inside the Efteling or on a convention - without needing internet access.
+
+So skip the additional configuration steps for now.
+
+---
+
+### Connect to the WLED Access Point (WLED-AP)
+
+After installing WLED, the ESP32 should automatically start broadcasting its own WiFi network.
+
+1. On your laptop or smartphone, open your WiFi settings.
+2. Connect to the network called:  
+   **WLED-AP**
+3. The default password is:  
+   **wled1234**
+
+Once connected:
+
+4. Open a browser and go to:  
+   http://4.3.2.1  
+   or  
+   http://wled.me  
+
+If the WLED interface loads, the installation was successful 🎉
+
+---
+
+### (Optional) Rename the WiFi Network
+
+It is **strongly** advised to change the default WiFi Network name and password, so that not everyone with WLED knowledge can mess with your lantern's configuration.
+
+1. Open WLED.
+2. Go to **WIFI SETTINGS**
+3. Scroll down to AP SSID and change the name and password.
+4. Click **Save**
+5. Restart the board.
+
+Reconnect to the new WiFi network using your updated password.
+
+We will now continue to the wiring steps.
+
+
+---
+
+## 2️⃣ Wire the ESP32 and LED Strip
+
+Now that WLED is installed, we can wire everything.
+
+### Connections
+
+ESP32 VIN → LED 5V  
+ESP32 GND → LED GND  
+ESP32 GPIO (e.g. GPIO 4 or 16) → 330Ω resistor → LED DIN  
+470µF capacitor between 5V and GND  
+Push button between chosen GPIO and GND  
+
+⚠ Important:
+
+- Make sure you connect to **DIN**, not DOUT (check the arrow on the LED strip).
+- The arrow should point *away* from the ESP32.
+- The capacitor has polarity:
+  - Long leg → 5V
+  - Short leg (striped side) → GND
+- All GND connections must be shared.
+
+Before continuing:
+- Power the ESP32 via USB
+- Test if the LEDs light up in WLED
+
+If they do, wiring is correct.
+
+---
+
+## 3️⃣ Physical Assembly Inside the Lantern
+
+Once everything works electronically, you can mount it inside the lantern.
+
+### LED Mounting
+
+- Wrap the LED strip around the PVC tube in a spiral.
+- Keep spacing consistent for best flame effect.
+- Secure the strip using hot glue.
+
+### Diffusion
+
+To achieve a smooth flame look:
+
+- Use frosted glass spray on the inner container  
+OR  
+- Wrap white parchment paper around the tube
+
+Good diffusion is more important than higher LED density.
+
+### Electronics Placement
+
+- Place the ESP32 and powerbank inside the PVC tube.
+- Route the USB-C cable through a small hole in the base.
+- Replace the original AAA battery compartment with the powerbank.
+- Secure components with hot glue to prevent movement.
+
+Make sure nothing can short or touch exposed metal contacts.
+
+---
+
+## 4️⃣ Configure WLED
+
+Now we configure WLED for the lantern.
+
+Open the WLED web interface.
+
+### LED Preferences
+
+Go to:
+
+Config → LED Preferences
+
+Set:
+
+- LED Type: WS2812B
+- Color Order: GRB
+- Total LED Count: (enter your actual number, e.g. 180)
+- GPIO: the pin you used (e.g. 4 or 16)
+
+Save and reboot.
+
+---
+
+### Button Setup
+
+Still in LED Preferences:
+
 - Button type: Pushbutton
-- Preset cycle via macro
+- Button GPIO: the pin you connected the button to
 
-Preset cycle macro used:
+Save and reboot.
+
+---
+
+### Preset Cycling
+
+Create your flame presets.
+
+Then create a preset with the following API command:
 
