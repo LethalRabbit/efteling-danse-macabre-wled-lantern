@@ -88,7 +88,7 @@ No advanced coding is required. We will use existing firmware (WLED) and configu
 
 ---
 
-## 1️⃣ Install WLED on the ESP32
+## 1️⃣ Installing WLED on ESP32
 
 Before wiring anything, we first install WLED on the ESP32 board.
 
@@ -278,9 +278,9 @@ Now, we will connect the wires to the board.
   - D25
 
 We will solder the wires to the following pins:
-- Red wire → ESP32 VIN
-- Black wire → ESP32 GND
-- White wire → ESP32 D25
+- 🔴 Red wire → ESP32 VIN
+- ⚫ Black wire → ESP32 GND
+- ⚪ White wire → ESP32 D25
 
 Solder each one carefully. After soldering, slide the shrink tube over it and shrink it. You should end up with a result that looks like this:
 
@@ -322,7 +322,7 @@ Congratulations, your LED strip is wired correctly and can be controlled via the
 
 ---
 
-## 5️⃣ Modify the Lantern (Physical Changes)
+## 5️⃣ Modifying the Lantern (Physical Changes)
 
 In this step, we will make a few small physical modifications to the original popcorn lantern. Again, take your time here. Measure twice, cut once.
 
@@ -343,9 +343,7 @@ It is better to start small and widen the hole gradually until the button fits s
 
 ### Step 2 - Create the Frosted Glass Effect
 
-To achieve a soft, candle-like glow, the inner plastic lantern needs to be made more opaque.
-
-You have two options:
+To achieve a soft, candle-like glow, the inner plastic lantern needs to be made more opaque. You have two options:
 
 #### Option A - Frosted Glass Spray
 
@@ -362,7 +360,7 @@ Instead of spray, you can glue a layer of white parchment paper to the inside. A
 3. Use a glue stick to apply a thin, even layer.
 4. Press the parchment paper evenly against the inside surface.
 
-### Step 3 - Cut Hoel in 'Glass' Lantern Base
+### Step 3 - Cut Hole in 'Glass' Lantern Base
 
 We will now cut a hole, the size of the PVC tube, in the bottom of the 'glass' lantern's base. This is so we can slide it in and over the PVC tube later.
 
@@ -371,6 +369,78 @@ We will now cut a hole, the size of the PVC tube, in the bottom of the 'glass' l
 3. The hole should be large enough for the PVC tube to slide through, but not so big that the hole will be visible from the sides of the lantern.
 4. Test-fit if the PVC tube fits through the hole.
 
-Once these steps are completed, the lantern is ready for final assembly.
+![Frosted Glass with Hole](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/ef19b759e4852d0ca4d1264d391c6ed4fccecd36/images/Frosted%20Glass.jpg)
+
+Once these steps are completed, we will continue with adding the push button.
+
+---
+
+## 6️⃣ Mounting and Connecting the Push Button
+
+In this step, we permanently mount the push button into the lantern and connect it to the ESP32.
+
+⚠️ Important:
+
+From this point on, the ESP32 board will be physically attached to the lantern. Make sure all previous steps are completed first. This is also why we use longer wires for the button, as it gives you some movement room while assembling everything.
+
+### Step 1 - Prepare the Button Wires
+
+1. Cut two wires, approximately **25 cm (10 inches)** long.
+   - 🔴 Red wire
+   - ⚫ Black wire
+2. Strip both ends of both wires.
+3. Solder one end of each wire to the terminals of the push button.
+
+The push button has no polarity - it does not matter which wire goes to which terminal.
+
+### Step 2 - Mount the Button in the Lantern
+
+1. Insert the push button into the hole in the bottom of the lantern. Make sure it sits firmly and straight.
+2. Secure it in place (use the button’s mounting ring or a small amount of hot glue if necessary).
+
+The button should now be mechanically fixed in the base of the lantern.
+
+### Step 3 - Solder the Button to the ESP32
+
+We will now connect the button to the ESP32 board. Before soldering, slide small pieces of heat shrink tubing onto both wires. Also make sure to add flux and tin the following connections:
+- End of the red wire
+- End of the black wire
+- GPIO D21 pin
+- GND pin
+
+**⚠️ There should be a second, unused GND pin remaining on the board that you can use for the button!**
+
+Then, solder everything together:
+
+1. Solder the black wire to the free **GND** pin. 
+2. Solder the red wire to **GPIO D21**.
+3. Slide the heat shrink tubing over the exposed solder joints.
+4. Carefully shrink the tubing.
+
+The end result should look like this:
+
+![Button](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/ef19b759e4852d0ca4d1264d391c6ed4fccecd36/images/Button.jpg)
+
+![Button Wiring](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/ef19b759e4852d0ca4d1264d391c6ed4fccecd36/images/Button%20Wiring.jpg)
+
+## 7️⃣ Configuring the Button in WLED
+
+Now we tell WLED which GPIO pin is used for the button.
+
+1. Connect the ESP32 board to your powerbank via the USB-C port.
+2. Connect your phone or laptop to the lantern’s WiFi network.
+3. Open the WLED interface in your browser.
+4. Click **“TO THE CONTROLS!”**
+5. Go to **Settings → LED Preferences**
+6. Set:
+   - **Button 0 GPIO** → `21`
+   - **Button type** → `Pushbutton`
+7. Click **Save**
+
+Your button should now toggle the lantern on and off.
+
+You can optionally configure preset cycling in:
+
+Settings → Time & Macros → Button Actions
 
 
