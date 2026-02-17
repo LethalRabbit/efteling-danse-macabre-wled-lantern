@@ -88,7 +88,7 @@ No advanced coding is required. We will use existing firmware (WLED) and configu
 
 ---
 
-## 1️⃣ Installing WLED on ESP32
+## 1️⃣ Installing WLED on ESP32 board
 
 Before wiring anything, we first install WLED on the ESP32 board.
 
@@ -204,7 +204,7 @@ Now that the LED strip is wrapped around the PVC tube and the three wires are at
 
 ### Step 1 - Soldering the Resistor to the Data Line
 
-For extra protection against high currents, the data line (white) must go through a 330Ω resistor before reaching the ESP32.
+For extra protection against data signal spikes, the data line (white) must go through a 330Ω resistor before reaching the ESP32.
 
 1. Take your 330Ω resistor.
 2. Cut the legs shorter if needed.
@@ -322,7 +322,7 @@ In this step, we will make a few small physical modifications to the original po
 
 ### Step 1 - Remove the original battery compartment
 
-Using a phillip's head screw driver, remove the two screws in the battery compartment at the bottom of the lantern.
+Using a Phillips-head screw driver, remove the two screws in the battery compartment at the bottom of the lantern.
 
 ![Battery compartment](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/46b1705ffd5b5d854b823df9153b5d8255ae39b3/images/Battery%20Compartment.jpg)
 
@@ -460,7 +460,7 @@ Now we will assemble everything inside the lantern. This step can feel a little 
 
 ### Step 2 - Power On During Assembly (Important)
 
-Before glueing everything together, connect the powerbank to the USB-C cable and turn the LEDs on. This way, if during assembly they suddenly turn off, flicker, or behave strangely, you can stop immediately before you break anything permanently. If this happens, analyse the problem and try again.
+Before gluing everything together, connect the powerbank to the USB-C cable and turn the LEDs on. This way, if during assembly they suddenly turn off, flicker, or behave strangely, you can stop immediately before you break anything permanently. If this happens, analyse the problem and try again.
 
 ### Step 3 - Glue the PVC Tube in Place
 
@@ -474,7 +474,7 @@ You should end up with a result that looks like this:
 
 ![Powerbank](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/95db3bf9530a6f62fbdbd40fe81bc9db6e5958bd/images/Powerbank.jpg)
 
-### Step 5 - Install the Frosted Inner Lantern
+### Step 4 - Install the Frosted Inner Lantern
 
 Once the PVC tube is securely glued, slide the frosted inner lantern piece over the LED-wrapped tube. Make sure it sits evenly and check that nothing is rubbing against or blocking the LEDs. Also make sure no light leaks through anywhere. Test if the lantern closes without issues.
 
