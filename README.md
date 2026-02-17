@@ -2,13 +2,15 @@
 
 A hardware mod project where I upgraded the official **Danse Macabre popcorn lantern** from the Efteling into a fully programmable WLED-powered lantern with dynamic flame effects.
 
-The original lantern already looked amazing, but the stock orange LEDs could be improved. So I rebuilt the internals to make the lantern truly *come alive* while preserving the original aesthetic.
+The original lantern already looks amazing, but the stock orange LEDs could be improved. So I rebuilt the internals to make the lantern truly *come alive* while preserving the original aesthetic.
 
 ---
 
 ## 🎥 Demo
 
 [Click here to watch the demo on YouTube](https://youtube.com/shorts/hM2XBhFmyak?feature=share)
+
+![Result](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/d6b8cb45dc4eade148d3c2785d11ecf73ecba6bf/images/Result.jpg)
 
 ---
 
@@ -36,7 +38,7 @@ You do **not** need advanced electronics experience.
 
 However, you should:
 
-- Be comfortable with **basic soldering**
+- Be comfortable with **basic soldering**. If you have never soldered LED strips before, do yourself a favour and look up a short YouTube tutorial. You will save yourself a lot of time and frustration by mastering the basics first.
 - Be able to follow instructions carefully
 - Take your time and double-check connections
 
@@ -70,6 +72,7 @@ If you are a technical person who is comfortable with soldering and wiring circu
 - Pliers for cutting wires
 - Soldering iron + solder
 - Hot glue gun
+- Glue stick
 - Wire stripper / cutter
 - Scissors
 - Hobby knife
@@ -160,18 +163,56 @@ Now that WLED is installed, we can start wiring.
 
 ### LED Strip Preparation
 
-Before connecting anything to the ESP32, we first prepare the LED strip. If you have never soldered LED strips before, do yourself a favour and look up a short YouTube tutorial. You will save yourself a lot of time and frustration by mastering the basics first.
+Before connecting anything to the ESP32, we first prepare the LED strip.
 
-- Cut three pieces of red, black and white wire, approximately **10 cm (4 inches)** long.
-- Strip the ends of the wire and solder them to the LED strip.
+#### Step 1 — Prepare the Wires
 
-In this guide, I used the following color convention:
+- Cut three pieces of wire (red, black and white), approximately **10 cm (4 inches)** long.
+- Strip both ends of each wire.
+- Tin the exposed wire ends with a small amount of solder.
+
+#### Step 2 — Identify the Correct End of the LED Strip
+
+⚠️ This step is very important. WS2812B LED strips have a direction. Look closely for the small arrows printed on the strip. You must solder your wires to the pads labeled:
+
+**5V – DIN – GND**
+
+Do **not** solder to the side labeled:
+
+**5V – DOUT – GND**
+
+The arrow should point *away* from the ESP32. If you accidentally connect to DOUT instead of DIN, the LEDs will not respond.
+
+#### Step 3 — Solder the Wires
+
+Using the following color convention (recommended):
 
 - 🔴 Red → 5V  
 - ⚫ Black → GND  
 - ⚪ White → DIN (Data In)
 
-Using different colors is highly recommended to avoid confusion later.
+
+---
+
+#### Step 4 — Prepare the PVC Tube
+
+- Take your PVC tube.
+- Cut a small hole near the bottom edge on one side.
+- This hole allows the three wires to pass through to the inside.
+
+---
+
+#### Step 5 — Wrap the LED Strip
+
+- Start at the bottom of the tube.
+- Wrap the LED strip in a spiral pattern all the way to the top.
+- Keep spacing consistent for the best flame effect.
+- Secure the strip using hot glue if necessary.
+
+After wrapping the LED strip around the tube, your result should look similar to the image below.
+
+![LEDs wrapped](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/d6b8cb45dc4eade148d3c2785d11ecf73ecba6bf/images/LEDs%20Wrapped.jpg)
+
 
 ### Connections
 
@@ -182,8 +223,6 @@ ESP32 GPIO (e.g. GPIO 4 or 16) → 330Ω resistor → LED DIN
 Push button between chosen GPIO and GND  
 
 ⚠ Important:
-
-- Make sure you connect to **DIN**, not DOUT (check the arrow on the LED strip).
 - The arrow should point *away* from the ESP32.
 - The capacitor has polarity:
   - Long leg → 5V
