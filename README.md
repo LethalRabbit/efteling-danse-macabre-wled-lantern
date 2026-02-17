@@ -152,7 +152,6 @@ Reconnect to the new WiFi network using your updated password.
 
 We will now continue to the wiring steps. Put your ESP32 board aside for now, we will need it again later.
 
-
 ---
 
 ## 2️⃣ Wire the ESP32 and LED Strip
