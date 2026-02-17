@@ -104,7 +104,7 @@ https://install.wled.me/
 2. Open **Google Chrome or Microsoft Edge** (recommended for best compatibility).
 3. Go to:  
    👉 https://install.wled.me/
-4. Click **Install**
+4. Click `Install`
 5. Select your ESP32 device from the list that appears.
 6. Confirm the installation.
 7. Wait until the process finishes.
@@ -122,16 +122,16 @@ After installing WLED, the ESP32 should automatically start broadcasting its own
 
 1. On your laptop or smartphone, open your WiFi settings.
 2. Connect to the network called:  
-   **WLED-AP**
+   `WLED-AP`
 3. The default password is:  
-   **wled1234**
+   `wled1234`
 
 Once connected:
 
 4. Open a browser and go to:  
-   http://4.3.2.1  
+   `http://4.3.2.1`
    or  
-   http://wled.me  
+   `http://wled.me`  
 
 If the WLED interface loads, the installation was successful 🎉.
 
@@ -140,9 +140,9 @@ If the WLED interface loads, the installation was successful 🎉.
 It is **strongly** advised to change the default WiFi Network name and password, so that not everyone with WLED knowledge can mess with your lantern's configuration.
 
 1. Open WLED.
-2. Go to **WIFI SETTINGS**
+2. Go to `WIFI SETTINGS`
 3. Scroll down to AP SSID and change the name and password.
-4. Click **Save**
+4. Click `Save`.
 5. Restart the board.
 
 Reconnect to the new WiFi network using your updated password.
@@ -163,23 +163,15 @@ Before connecting anything to the ESP32, we first prepare the LED strip.
 
 ### Step 2 - Identify the Correct End of the LED Strip
 
-⚠️ This step is very important. WS2812B LED strips have a direction. Look closely for the small arrows printed on the strip. You must solder your wires to the pads labeled:
-
-**5V – DIN - GND**
-
-Do **not** solder to the side labeled:
-
-**5V – DOUT - GND**
-
-The arrow should point *away* from the ESP32. If you accidentally connect to DOUT instead of DIN, the LEDs will not respond.
+⚠️ This step is very important. WS2812B LED strips have a direction. Look closely for the small arrows printed on the strip. You must solder your wires to the side that says `DIN`, **NOT** the `DOUT` side. If you accidentally connect to DOUT instead of DIN, the LEDs will not respond.
 
 ### Step 3 - Solder the Wires
 
 Using the following color convention (recommended):
 
-- 🔴 Red → 5V  
-- ⚫ Black → GND  
-- ⚪ White → DIN (Data In)
+- 🔴 Red → `5V`  
+- ⚫ Black → `GND`  
+- ⚪ White → `DIN` (Data In)
 
 ### Step 4 - Prepare the PVC Tube
 
