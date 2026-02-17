@@ -165,25 +165,25 @@ Now that WLED is installed, we can start wiring.
 
 Before connecting anything to the ESP32, we first prepare the LED strip.
 
-#### Step 1 — Prepare the Wires
+#### Step 1 - Prepare the Wires
 
 - Cut three pieces of wire (red, black and white), approximately **10 cm (4 inches)** long.
 - Strip both ends of each wire.
 - Tin the exposed wire ends with a small amount of solder.
 
-#### Step 2 — Identify the Correct End of the LED Strip
+#### Step 2 - Identify the Correct End of the LED Strip
 
 ⚠️ This step is very important. WS2812B LED strips have a direction. Look closely for the small arrows printed on the strip. You must solder your wires to the pads labeled:
 
-**5V – DIN – GND**
+**5V – DIN - GND**
 
 Do **not** solder to the side labeled:
 
-**5V – DOUT – GND**
+**5V – DOUT - GND**
 
 The arrow should point *away* from the ESP32. If you accidentally connect to DOUT instead of DIN, the LEDs will not respond.
 
-#### Step 3 — Solder the Wires
+#### Step 3 - Solder the Wires
 
 Using the following color convention (recommended):
 
@@ -193,7 +193,7 @@ Using the following color convention (recommended):
 
 ---
 
-#### Step 4 — Prepare the PVC Tube
+#### Step 4 - Prepare the PVC Tube
 
 - Take your PVC tube.
 - Cut a small hole near the bottom edge on one side.
@@ -201,7 +201,7 @@ Using the following color convention (recommended):
 
 ---
 
-#### Step 5 — Wrap the LED Strip
+#### Step 5 - Wrap the LED Strip
 
 - Start at the bottom of the tube.
 - Wrap the LED strip in a spiral pattern all the way to the top.
