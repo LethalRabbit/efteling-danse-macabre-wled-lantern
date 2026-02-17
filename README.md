@@ -98,8 +98,6 @@ https://github.com/wled/WLED
 The easiest way to install it is via the official web installer:  
 https://install.wled.me/
 
----
-
 ### Step-by-step installation
 
 1. Plug your ESP32 board into your computer using a USB-C cable.
@@ -117,8 +115,6 @@ For this project, we will **not** connect the ESP32 to your home WiFi.
 Instead, we will let it create its own WiFi network. This allows you to adjust the lantern settings anywhere - even inside the Efteling or on a convention - without needing internet access.
 
 So skip the additional configuration steps for now.
-
----
 
 ### Connect to the WLED Access Point (WLED-AP)
 
@@ -138,8 +134,6 @@ Once connected:
    http://wled.me  
 
 If the WLED interface loads, the installation was successful 🎉.
-
----
 
 ### (Optional) Rename the WiFi Network
 
@@ -187,15 +181,11 @@ Using the following color convention (recommended):
 - ⚫ Black → GND  
 - ⚪ White → DIN (Data In)
 
----
-
 ### Step 4 - Prepare the PVC Tube
 
 - Take your PVC tube.
 - Cut a small hole near the bottom edge on one side.
 - This hole allows the three wires to pass through to the inside.
-
----
 
 ### Step 5 - Wrap the LED Strip
 
@@ -208,98 +198,114 @@ After wrapping the LED strip around the tube, your result should look similar to
 
 ![LEDs wrapped](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/d6b8cb45dc4eade148d3c2785d11ecf73ecba6bf/images/LEDs%20Wrapped.jpg)
 
+It's possible to create an extra barrier between the bottom (where the electronics will live) and the top (where we will place the powerbank) of the PVC tube. In order to do so, I added a lid inside and cut a hole in it to feed the USB-C cable through.
 
-## 3️⃣ Soldering the LED strip to the ESP32 board
+![Separation lid](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/82e3b34d2d202679b84af3cb49afca1adbe456e9/images/Cable%20Hole.jpg)
 
-ESP32 VIN → LED 5V  
-ESP32 GND → LED GND  
-ESP32 GPIO (e.g. GPIO 4 or 16) → 330Ω resistor → LED DIN  
-470µF capacitor between 5V and GND  
-Push button between chosen GPIO and GND  
-
-⚠ Important:
-- The arrow should point *away* from the ESP32.
-- The capacitor has polarity:
-  - Long leg → 5V
-  - Short leg (striped side) → GND
-- All GND connections must be shared.
-
-Before continuing:
-- Power the ESP32 via USB
-- Test if the LEDs light up in WLED
-
-If they do, wiring is correct.
+That concludes the first step. On to soldering the LED strip to the ESP32 module!
 
 ---
 
-##  Physical Assembly Inside the Lantern
+## 3️⃣ Soldering the Capacitor and Resistor
 
-Once everything works electronically, you can mount it inside the lantern.
+Now that the LED strip is wrapped around the PVC tube and the three wires are attached, we will add the resistor and capacitor to our setup.
 
-### LED Mounting
+### Step 1 - Soldering the Resistor to the Data Line
 
-- Wrap the LED strip around the PVC tube in a spiral.
-- Keep spacing consistent for best flame effect.
-- Secure the strip using hot glue.
+For extra protection against high currents, the data line (white) must go through a 330Ω resistor before reaching the ESP32.
 
-### Diffusion
+1. Take your 330Ω resistor.
+2. Cut the legs shorter if needed.
+3. Slide a small piece of heat shrink tubing onto the white data wire **before soldering** (important - you can’t add it later).
+4. Solder one leg of the resistor to the white wire coming from the LED strip.
+5. Slide the heat shrink tubing over the exposed solder joint.
+6. Use a heat gun or lighter carefully to shrink it.
 
-To achieve a smooth flame look:
+You should now have: White wire → 330Ω resistor → free resistor leg. 
 
-- Use frosted glass spray on the inner container  
-OR  
-- Wrap white parchment paper around the tube
+We will add an additional piece of white wire to the free resistor leg, in order to make isolating it with shrink tube easier:
 
-Good diffusion is more important than higher LED density.
+1. Cut a short extra piece of white wire (about 5–8 cm)
+2. Solder it to the remaining free resistor leg.
 
-### Electronics Placement
+### Step 2 - Combine 5V and GND with Capacitor (Parallel Connection)
 
-- Place the ESP32 and powerbank inside the PVC tube.
-- Route the USB-C cable through a small hole in the base.
-- Replace the original AAA battery compartment with the powerbank.
-- Secure components with hot glue to prevent movement.
+The capacitor must be connected **in parallel** between 5V and GND. Instead of soldering everything directly onto the ESP32 pin, we first create a clean junction.
 
-Make sure nothing can short or touch exposed metal contacts.
+#### For the 5V side:
 
----
+1. Cut a short extra piece of red wire (about 5–8 cm).
+2. Slide a piece of heat shrink tubing onto the red LED wire.
+3. Twist together:
+   - The red wire from the LED strip
+   - The long leg of the capacitor (⚠️ Important: this **must** be the long leg / positive side)
+   - One end of the extra red wire
+4. Solder these three together.
+5. Slide the heat shrink tubing over the joint.
+6. Shrink it.
 
-## 4️⃣ Configure WLED
+You now have: (LED 5V + capacitor positive) → extra red wire → free end
 
-Now we configure WLED for the lantern.
+#### For the GND side:
 
-Open the WLED web interface.
+1. Cut a short extra piece of black wire (about 5–8 cm).
+2. Slide heat shrink tubing onto the black LED wire.
+3. Twist together:
+   - The black wire from the LED strip
+   - The short leg of the capacitor (⚠️ Important: this **must** be the short leg / negative side)
+   - One end of the extra black wire
+4. Solder these three together.
+5. Slide the heat shrink tubing over the joint.
+6. Shrink it.
 
-### LED Preferences
+You now have: (LED GND + capacitor negative) → extra black wire → free end
 
-Go to:
-
-Config → LED Preferences
-
-Set:
-
-- LED Type: WS2812B
-- Color Order: GRB
-- Total LED Count: (enter your actual number, e.g. 180)
-- GPIO: the pin you used (e.g. 4 or 16)
-
-Save and reboot.
-
----
-
-### Button Setup
-
-Still in LED Preferences:
-
-- Button type: Pushbutton
-- Button GPIO: the pin you connected the button to
-
-Save and reboot.
+⚠️ Make absolutely sure the capacitor legs can not touch each other, and are fully wrapped in shrink tubing.
 
 ---
 
-### Preset Cycling
+## 4️⃣ Soldering the LED strip to the ESP32 board
 
-Create your flame presets.
+After completing the previous step, you should now have ended up (again) with a red, black and white wire.
 
+Now, we will connect the wires to the board. 
+⚠️ A couple of notes:
+- Before soldering each wire, make sure to add some shrink tube to the wire first.
+- Add some flux and solder to the ends of the wires, as well as to the following ESP32 pins:
+  - VIN
+  - GND
+  - D25
+
+We will solder the wires to the following pins:
+- Red wire → ESP32 VIN
+- Black wire → ESP32 GND
+- White wire → ESP32 D25
+
+Solder each one carefully. After soldering, slide the shrink tube over it and shrink it. You should end up with a result that looks like this:
+
+![Wiring Result](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/82e3b34d2d202679b84af3cb49afca1adbe456e9/images/LED%20Wiring.jpg)
+
+---
+
+### Final Check Before Powering
+
+Before plugging in USB power:
+
+- Verify red goes to VIN.
+- Verify black goes to GND.
+- Verify capacitor polarity is correct.
+- Verify white wire goes through the resistor to the GPIO.
+- Make sure there are no loose strands of wire.
+
+Now:
+
+1. Plug the ESP32 into USB power.
+2. Open the WLED interface.
+3. Turn the LEDs on.
+
+If everything is wired correctly, the LED strip should light up.
+
+If nothing happens, first check:
+- Did you connect to DIN and not DOUT?
 Then create a preset with the following API command:
 
