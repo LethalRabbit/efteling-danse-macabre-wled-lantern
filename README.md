@@ -191,7 +191,6 @@ Using the following color convention (recommended):
 - ⚫ Black → GND  
 - ⚪ White → DIN (Data In)
 
-
 ---
 
 #### Step 4 — Prepare the PVC Tube
