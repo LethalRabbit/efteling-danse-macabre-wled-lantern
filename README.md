@@ -14,7 +14,7 @@ The original lantern already looked amazing, but the stock orange LEDs could be 
 
 ## ✨ What This Mod Does
 
-This mod transforms the Danse Macabre popcorn lantern into something that feels a little more… alive.
+This mod transforms the Danse Macabre popcorn lantern into something that feels a little more... alive.
 
 The original lantern already captures the atmosphere of the dark ride beautifully, but internally it has been completely reimagined:
 
@@ -42,9 +42,9 @@ However, you should:
 
 If you can solder a few wires and follow step-by-step instructions, you can build this lantern.
 
-This guide is written for non-technical makers - including cosplayers, prop builders, and hobbyists - and explains each step as clearly as possible so anyone can recreate the project.
+This guide is written for non-technical makers - including cosplayers, prop builders, and hobbyists - and explains each step as clearly as possible so anyone can recreate the project. Just follow the steps in order and don’t rush the wiring. 
 
-Just follow the steps in order and don’t rush the wiring.
+If you are a technical person who is comfortable with soldering and wiring circuit boards, you can probably skip some portions of this guide.
   
 ---
 
@@ -62,7 +62,7 @@ Just follow the steps in order and don’t rush the wiring.
 - USB-C to USB-C cable (to power the ESP32)
 - Hook-up wires in at least 3 colors (e.g. red = 5V, black = GND, white/green = data)
 - 1x PVC tube, approx. 18 cm long and ±75 mm in diameter  
-  *(Slightly smaller is fine, as long as the ESP32 and powerbank fit inside comfortably. A larger diameter is not advised, as the LEDs may end up too close to the glass)*
+  *(Slightly smaller is fine, as long as the ESP32 and powerbank fit inside comfortably. A larger diameter is not advised, as the LEDs may end up too close to the glass and be individually visible from the outside)*
 
 ### Tools
 
@@ -72,6 +72,7 @@ Just follow the steps in order and don’t rush the wiring.
 - Hot glue gun
 - Wire stripper / cutter
 - Scissors
+- Hobby knife
 - Multimeter (recommended for testing connections)
 
 ---
@@ -133,7 +134,7 @@ Once connected:
    or  
    http://wled.me  
 
-If the WLED interface loads, the installation was successful 🎉
+If the WLED interface loads, the installation was successful 🎉.
 
 ---
 
@@ -149,7 +150,7 @@ It is **strongly** advised to change the default WiFi Network name and password,
 
 Reconnect to the new WiFi network using your updated password.
 
-We will now continue to the wiring steps.
+We will now continue to the wiring steps. Put your ESP32 board aside for now, we will need it again later.
 
 
 ---
@@ -158,7 +159,20 @@ We will now continue to the wiring steps.
 
 Now that WLED is installed, we can start wiring.
 
-### 
+### LED Strip Preparation
+
+Before connecting anything to the ESP32, we first prepare the LED strip. If you have never soldered LED strips before, do yourself a favour and look up a short YouTube tutorial. You will save yourself a lot of time and frustration by mastering the basics first.
+
+- Cut three pieces of red, black and white wire, approximately **10 cm (4 inches)** long.
+- Strip the ends of the wire and solder them to the LED strip.
+
+In this guide, I used the following color convention:
+
+- 🔴 Red → 5V  
+- ⚫ Black → GND  
+- ⚪ White → DIN (Data In)
+
+Using different colors is highly recommended to avoid confusion later.
 
 ### Connections
 
