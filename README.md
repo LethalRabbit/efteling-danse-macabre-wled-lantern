@@ -24,6 +24,27 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 - A discreet physical button allows toggling the lantern on or off and cycling through effects
 - The original AAA battery compartment is replaced with a regular powerbank
 - From the outside, the lantern still looks completely original - the magic happens within
+
+---
+
+## 🟢 Difficulty Level: Easy
+
+This project is designed to be beginner-friendly.
+
+You do **not** need programming knowledge.  
+You do **not** need advanced electronics experience.
+
+However, you should:
+
+- Be comfortable with **basic soldering**
+- Be able to follow instructions carefully
+- Take your time and double-check connections
+
+If you can solder a few wires and follow step-by-step instructions, you can build this lantern.
+
+This guide is written for non-technical makers - including cosplayers, prop builders, and hobbyists - and explains each step as clearly as possible so anyone can recreate the project.
+
+Just follow the steps in order and don’t rush the wiring.
   
 ---
 
@@ -33,7 +54,7 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 
 - 1x ESP32 DevKit V1 (USB-C)
 - ~ 3 meters of 5V WS2812B addressable LED strip (60 LEDs/m, ±180 LEDs total)
-- 330Ω resistor (data line protection)
+- 330Ω resistor (for data line protection)
 - 470µF capacitor or higher (power stabilization between 5V and GND)
 - 1x momentary push button
 - Frosted glass spray **or** a piece of white parchment paper (to create a diffused, frosted-glass look)
@@ -41,7 +62,7 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 - USB-C to USB-C cable (to power the ESP32)
 - Hook-up wires in at least 3 colors (e.g. red = 5V, black = GND, white/green = data)
 - 1x PVC tube, approx. 18 cm long and ±75 mm in diameter  
-  *(Slightly smaller is fine, as long as the ESP32 and powerbank fit inside comfortably.)*
+  *(Slightly smaller is fine, as long as the ESP32 and powerbank fit inside comfortably. A larger diameter is not advised, as the LEDs may end up too close to the glass)*
 
 ### Tools
 
@@ -50,6 +71,7 @@ The original lantern already captures the atmosphere of the dark ride beautifull
 - Soldering iron + solder
 - Hot glue gun
 - Wire stripper / cutter
+- Scissors
 - Multimeter (recommended for testing connections)
 
 ---
@@ -134,7 +156,9 @@ We will now continue to the wiring steps.
 
 ## 2️⃣ Wire the ESP32 and LED Strip
 
-Now that WLED is installed, we can wire everything.
+Now that WLED is installed, we can start wiring.
+
+### 
 
 ### Connections
 
