@@ -157,21 +157,17 @@ We will now continue to the wiring steps. Put your ESP32 board aside for now, we
 
 ---
 
-## 2️⃣ Wire the ESP32 and LED Strip
-
-Now that WLED is installed, we can start wiring.
-
-### LED Strip Preparation
+## 2️⃣ Soldering the LED strip and wrap around PVC tube
 
 Before connecting anything to the ESP32, we first prepare the LED strip.
 
-#### Step 1 - Prepare the Wires
+### Step 1 - Prepare the Wires
 
 - Cut three pieces of wire (red, black and white), approximately **10 cm (4 inches)** long.
 - Strip both ends of each wire.
 - Tin the exposed wire ends with a small amount of solder.
 
-#### Step 2 - Identify the Correct End of the LED Strip
+### Step 2 - Identify the Correct End of the LED Strip
 
 ⚠️ This step is very important. WS2812B LED strips have a direction. Look closely for the small arrows printed on the strip. You must solder your wires to the pads labeled:
 
@@ -183,7 +179,7 @@ Do **not** solder to the side labeled:
 
 The arrow should point *away* from the ESP32. If you accidentally connect to DOUT instead of DIN, the LEDs will not respond.
 
-#### Step 3 - Solder the Wires
+### Step 3 - Solder the Wires
 
 Using the following color convention (recommended):
 
@@ -193,7 +189,7 @@ Using the following color convention (recommended):
 
 ---
 
-#### Step 4 - Prepare the PVC Tube
+### Step 4 - Prepare the PVC Tube
 
 - Take your PVC tube.
 - Cut a small hole near the bottom edge on one side.
@@ -201,19 +197,19 @@ Using the following color convention (recommended):
 
 ---
 
-#### Step 5 - Wrap the LED Strip
+### Step 5 - Wrap the LED Strip
 
 - Start at the bottom of the tube.
 - Wrap the LED strip in a spiral pattern all the way to the top.
 - Keep spacing consistent for the best flame effect.
-- Secure the strip using hot glue if necessary.
+- Secure the strip using hot glue if necessary. You can also apply some hot glue to the soldering connections for extra protection.
 
 After wrapping the LED strip around the tube, your result should look similar to the image below.
 
 ![LEDs wrapped](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/d6b8cb45dc4eade148d3c2785d11ecf73ecba6bf/images/LEDs%20Wrapped.jpg)
 
 
-### Connections
+## 3️⃣ Soldering the LED strip to the ESP32 board
 
 ESP32 VIN → LED 5V  
 ESP32 GND → LED GND  
@@ -236,7 +232,7 @@ If they do, wiring is correct.
 
 ---
 
-## 3️⃣ Physical Assembly Inside the Lantern
+##  Physical Assembly Inside the Lantern
 
 Once everything works electronically, you can mount it inside the lantern.
 
