@@ -300,18 +300,77 @@ Now, it's time to test our setup and see if everything is working!
 - Verify capacitor polarity is correct.
 - Make sure there are no loose strands of wire, or bare pieces of metal touching each other.
 
-### Powering On
+### Powering On and Testing
 
 1. Connect the ESP32 board to your powerbank via the USB-C port.
-2. Open the WLED interface.
-3. Click **'TO THE CONTROLS!'**.
-4. Go to **'Settings' → 'LED Preferences'**.
-5. Select **'Enable automatic brightness limiter'** and set **'Maximum PSU Current'** to _1000 mA_.
-6. Leave **'WS281x'** and **'(typ. 5V WS281x)'**, as this is the LED strip type we're using.
-7. Set **'Color Order'** to _GRB_.
-8. Set **'Length:'** to the amount of LEDs you are using. In my case, that's _180_ LEDs.
-9. Set **'Data GPIO'** to _25_.
-10. Hit **'Save'**.
+2. Connect to the lantern's WiFi network.
+3. Open the WLED interface.
+4. Click **'TO THE CONTROLS!'**.
+5. Go to **'Settings' → 'LED Preferences'**.
+6. Select **'Enable automatic brightness limiter'** and set **'Maximum PSU Current'** to _1000 mA_.
+7. Leave **'WS281x'** and **'(typ. 5V WS281x)'**, as this is the LED strip type we're using.
+8. Set **'Color Order'** to _GRB_.
+9. Set **'Length:'** to the amount of LEDs you are using. In my case, that's _180_ LEDs.
+10. Set **'Data GPIO'** to _25_.
+11. Hit **'Save'**.
 
-If everything is wired correctly, the LED strip should light up. If nothing happens, try toggling the system with the 'Power' button in the controls. If that does not work, go back and check every step before this one for mistakes.
+If everything is wired correctly, the LED strip should light up. If nothing happens, try toggling the system with the 'Power' button in the controls. If that does not work, go back and check if you made any mistakes in the previous steps.
+
+Now, make sure to test if controls such as On/Off and the brightness control slider are working. Also change the color of the lights to see if GRB is the correct color order for your strip. E.g. if you set the color to red in the interface, but the lights turn green, you should pick a different color order in the LED Settings.
+
+Congratulations, your LED strip is wired correctly and can be controlled via the web app! 🎉
+
+---
+
+## 5️⃣ Modify the Lantern (Physical Changes)
+
+In this step, we will make a few small physical modifications to the original popcorn lantern. Again, take your time here. Measure twice, cut once.
+
+### Step 1 - Create a Hole for the Push Button
+
+We need to mount the push button in the center of the bottom of the lantern.
+
+1. Locate the exact center of the lantern base.
+2. Carefully make a small hole that fits your push button.
+
+You can do this in two ways:
+
+- Use a sharp hobby knife and slowly cut the hole.
+- Or carefully melt a hole using the tip of your soldering iron.
+
+⚠️ Work slowly and carefully.  
+It is better to start small and widen the hole gradually until the button fits snugly. The button should sit firmly in place without wobbling. (We will connect the button in Step 6, where you’ll also see a reference image.)
+
+### Step 2 - Create the Frosted Glass Effect
+
+To achieve a soft, candle-like glow, the inner plastic lantern needs to be made more opaque.
+
+You have two options:
+
+#### Option A - Frosted Glass Spray
+
+- Lightly spray the inside of the plastic inner lantern with frosted glass spray.
+- Apply multiple thin coats instead of one thick layer.
+- Let it dry completely before continuing.
+
+#### Option B - Parchment Paper (Recommended Alternative)
+
+Instead of spray, you can glue a layer of white parchment paper to the inside. An added bonus is that this will give some extra structure to the 'glass'.
+
+1. Fit and cut the parchment paper to size.
+2. Crumble up your piece of parchment paper for extra texture.
+3. Use a glue stick to apply a thin, even layer.
+4. Press the parchment paper evenly against the inside surface.
+
+### Step 3 - Cut Hoel in 'Glass' Lantern Base
+
+We will now cut a hole, the size of the PVC tube, in the bottom of the 'glass' lantern's base. This is so we can slide it in and over the PVC tube later.
+
+1. Take the plastic inner lantern piece.
+2. Cut a circular hole in the bottom center.
+3. The hole should be large enough for the PVC tube to slide through, but not so big that the hole will be visible from the sides of the lantern.
+4. Test-fit if the PVC tube fits through the hole.
+
+Once these steps are completed, the lantern is ready for final assembly.
+
 
