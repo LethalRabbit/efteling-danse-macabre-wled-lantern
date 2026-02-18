@@ -56,12 +56,12 @@ If you are a technical person who is comfortable with soldering and wiring circu
 
 - 1x ESP32 DevKit V1 (USB-C)
 - ~ 3 meters of 5V WS2812B addressable LED strip (60 LEDs/m, ±180 LEDs total)
-- 330Ω resistor (for data line protection)
-- 470µF capacitor or higher (power stabilization between 5V and GND)
+- 1x 330Ω resistor (for data line protection)
+- 1x 470µF capacitor or higher (power stabilization between 5V and GND)
 - 1x momentary push button
 - Frosted glass spray **or** a piece of white parchment paper (to create a diffused, frosted-glass look)
 - 1x regular powerbank (5000+ mAh recommended)
-- USB-C to USB-C cable (to power the ESP32)
+- 1x USB-C to USB-C cable (to power the ESP32)
 - Hook-up wires in at least 3 colors (e.g. red = 5V, black = GND, white/green = data)
 - 1x PVC tube, approx. 18 cm long and ±75 mm in diameter  
   *(Slightly smaller is fine, as long as the ESP32 and powerbank fit inside comfortably. A larger diameter is not advised, as the LEDs may end up too close to the glass and be individually visible from the outside)*
