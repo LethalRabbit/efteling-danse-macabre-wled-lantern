@@ -182,7 +182,7 @@ Using the following color convention (recommended):
 ### Step 5 - Wrap the LED Strip
 
 - Start at the bottom of the tube.
-- Wrap the LED strip in a spiral pattern all the way to the top.
+- Wrap the LED strip in a spiral pattern, **clockwise**, all the way to the top.
 - Keep spacing consistent for the best flame effect.
 - Secure the strip using hot glue if necessary. You can also apply some hot glue to the soldering connections for extra protection.
 
