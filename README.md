@@ -10,6 +10,8 @@ The original lantern already looks amazing, but the stock orange LEDs could be i
 
 [Click here to watch the demo on YouTube](https://youtube.com/shorts/hM2XBhFmyak?feature=share)
 
+[Click here to go to the /r/efteling reddit thread](https://www.reddit.com/r/efteling/comments/1r6nlm2/danse_macabre_popcornlantaarn_lichtmod/)
+
 ![Result](https://github.com/LethalRabbit/efteling-danse-macabre-wled-lantern/blob/3d96e8483f9c84a1f05695dc08b1ec9f38605566/images/Result2.jpg)
 
 ---
